@@ -1,30 +1,29 @@
-{% set name = "BTrees" %}
+{% set name = "btrees" %}
 {% set version = "6.2" %}
-{% set sha256 = "4a7c703766847eb0fab58ae9b9d69cc80588cbfd6e34572bbabd4553e079fe2b" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/B/BTrees/btrees-6.2.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 4a7c703766847eb0fab58ae9b9d69cc80588cbfd6e34572bbabd4553e079fe2b
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
-  detect_binary_files_with_prefix: false
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<310]
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
   host:
     - python
     - pip
-    - persistent
     - setuptools
     - wheel
+    - persistent
   run:
     - python
     - persistent >=4.1.0
@@ -33,20 +32,44 @@ requirements:
 test:
   imports:
     - BTrees
-    - BTrees._IFBTree
-    - BTrees._IIBTree
-    - BTrees._IOBTree
-    - BTrees._LFBTree
-    - BTrees._LLBTree
-    - BTrees._LOBTree
-    - BTrees._OIBTree
-    - BTrees._OLBTree
-    - BTrees._OOBTree
-    - BTrees._fsBTree
+    - BTrees._base
+    - BTrees._compat
+    - BTrees.fsBTree
+    - BTrees.IFBTree
+    - BTrees.IIBTree
+    - BTrees.Interfaces
+    - BTrees.IOBTree
+    - BTrees.IUBTree
+    - BTrees.LFBTree
+    - BTrees.LLBTree
+    - BTrees.LOBTree
+    - BTrees.LQBTree
+    - BTrees.OIBTree
+    - BTrees.OLBTree
+    - BTrees.OOBTree
+    - BTrees.OQBTree
+    - BTrees.OUBTree
+    - BTrees.QFBTree
+    - BTrees.QLBTree
+    - BTrees.QOBTree
+    - BTrees.QQBTree
+    - BTrees.UFBTree
+    - BTrees.UIBTree
+    - BTrees.UOBTree
+    - BTrees.utils
+    - BTrees.UUBTree
+  commands:
+    - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest --pyargs BTrees.tests
+  requires:
+    - pip
+    - pytest
+    - transaction
 
 about:
-  home: http://packages.python.org/BTrees
-  license: ZPL 2.1
+  home: https://packages.python.org/BTrees
+  license: ZPL-2.1
   license_family: Other
   license_file: LICENSE.txt
   summary: scalable persistent object containers
@@ -55,6 +78,5 @@ about:
     modified BTree data structure. The trees are optimized for use inside
     ZODB's "optimistic currency" paradigm, and include explicit resolution of
     conflicts detected by that mechanism.
-  doc_url: http://pythonhosted.org/BTrees
-  doc_source_url: https://github.com/zopefoundation/BTrees/blob/master/docs/index.rst
+  doc_url: https://pythonhosted.org/BTrees
   dev_url: https://github.com/zopefoundation/BTrees
