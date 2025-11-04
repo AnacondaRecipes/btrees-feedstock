@@ -1,19 +1,19 @@
 {% set name = "BTrees" %}
-{% set version = "4.6.0" %}
-{% set sha256 = "89a9137fd04af1f59a2d086c0fd075538add96cbde023282b887fcf2cdbbb32e" %}
+{% set version = "6.2" %}
+{% set sha256 = "4a7c703766847eb0fab58ae9b9d69cc80588cbfd6e34572bbabd4553e079fe2b" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/B/BTrees/btrees-6.2.tar.gz
   sha256: {{ sha256 }}
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
-  detect_binary_files_with_prefix: False
+  script: {{ PYTHON }} -m pip install . -vv
+  detect_binary_files_with_prefix: false
 
 requirements:
   build:
@@ -22,11 +22,13 @@ requirements:
   host:
     - python
     - pip
-    - persistent >=4.1.0
+    - persistent
+    - setuptools
+    - wheel
   run:
     - python
     - persistent >=4.1.0
-    - zope.interface
+    - zope.interface >=5.0.0
 
 test:
   imports:
