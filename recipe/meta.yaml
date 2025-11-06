@@ -78,5 +78,5 @@ about:
     modified BTree data structure. The trees are optimized for use inside
     ZODB's "optimistic currency" paradigm, and include explicit resolution of
     conflicts detected by that mechanism.
-  doc_url: https://pythonhosted.org/BTrees
+  doc_url: https://btrees.readthedocs.io
   dev_url: https://github.com/zopefoundation/BTrees
