@@ -1,13 +1,13 @@
 {% set name = "btrees" %}
-{% set version = "6.2" %}
+{% set version = "6.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4a7c703766847eb0fab58ae9b9d69cc80588cbfd6e34572bbabd4553e079fe2b
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 35c878ff0c42048223552e31848168f3e88bc3b3654e70146f99b3c04d3d0311
 
 build:
   number: 0
@@ -26,8 +26,8 @@ requirements:
     - persistent
   run:
     - python
-    - persistent >=4.1.0
-    - zope.interface >=5.0.0
+    - persistent
+    - zope.interface
 
 test:
   imports:
