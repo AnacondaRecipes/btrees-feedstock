@@ -23,7 +23,7 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - persistent
+    - persistent >=6.7
   run:
     - python
     - persistent
@@ -80,3 +80,9 @@ about:
     conflicts detected by that mechanism.
   doc_url: https://btrees.readthedocs.io
   dev_url: https://github.com/zopefoundation/BTrees
+
+extra:
+  recipe-maintainers:
+    - mwilsonsmith
+  skip-lints:
+    - reachable_url
