@@ -68,7 +68,7 @@ test:
     - transaction
 
 about:
-  home: https://packages.python.org/BTrees
+  home: https://pythonhosted.org/BTrees
   license: ZPL-2.1
   license_family: Other
   license_file: LICENSE.txt
