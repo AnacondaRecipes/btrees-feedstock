@@ -1,13 +1,13 @@
 {% set name = "btrees" %}
-{% set version = "6.2" %}
+{% set version = "6.4" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4a7c703766847eb0fab58ae9b9d69cc80588cbfd6e34572bbabd4553e079fe2b
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 35c878ff0c42048223552e31848168f3e88bc3b3654e70146f99b3c04d3d0311
 
 build:
   number: 0
@@ -23,11 +23,11 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - persistent
+    - persistent >=6.7
   run:
     - python
-    - persistent >=4.1.0
-    - zope.interface >=5.0.0
+    - persistent
+    - zope.interface
 
 test:
   imports:
@@ -68,7 +68,7 @@ test:
     - transaction
 
 about:
-  home: https://packages.python.org/BTrees
+  home: https://pythonhosted.org/BTrees
   license: ZPL-2.1
   license_family: Other
   license_file: LICENSE.txt
@@ -80,3 +80,9 @@ about:
     conflicts detected by that mechanism.
   doc_url: https://btrees.readthedocs.io
   dev_url: https://github.com/zopefoundation/BTrees
+
+extra:
+  recipe-maintainers:
+    - mwilsonsmith
+  skip-lints:
+    - reachable_url
